@@ -4,27 +4,20 @@ Termbin is a tool that lets you create [termbins](https://termbin.com/) (like pa
 
 ## Usage
 
-```powershell
+```bash
 # create a termbin from a file
-termbin main.rs
-
-# can read from stdin as well, just omit the filename:
-echo testing | termbin
+termbin --file main.rs
 
 # copy the url after creating it (instead of printing it)
-termbin main.rs -c
+termbin main.rs -c true
 ```
 
-## Installation
+## Building
 
 You'll need an up to date rust toolchain and git.
 
-```sh
-# recommended:
+```bash
 git clone https://github.com/Eshanatnight/termbin
 cd termbin
 cargo build --release
-
-# alternative:
-cargo install --git https://github.com/Eshanatnight/termbin --branch main
 ```
