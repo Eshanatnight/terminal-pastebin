@@ -23,12 +23,12 @@ impl Cmd {
     }
 
     pub fn run(&self) -> Result<(), Box<dyn Error>> {
-        let url = self.send_file()?;
+        let url: String = self.send_file()?;
 
         if self.clip {
             let mut ctx: ClipboardContext = ClipboardProvider::new()?;
-            ctx.set_contents(self.file.clone()).map(|_| {
-                println!("copied the link to clipboard");
+            ctx.set_contents(url).map(|_| {
+                println!("Copied the link to clipboard");
             })
         } else {
             println!("{}", &url);
@@ -39,11 +39,11 @@ impl Cmd {
 
 impl Cmd {
     fn send_file(&self) -> Result<String, io::Error> {
-        let mut file = File::open(&self.file)?;
-        let mut stream = TcpStream::connect(&self.remote)?;
+        let mut file: File = File::open(&self.file)?;
+        let mut stream: TcpStream = TcpStream::connect(&self.remote)?;
         io::copy(&mut file, &mut stream)?;
 
-        let mut buf = String::new();
+        let mut buf: String = String::new();
         stream.read_to_string(&mut buf)?;
 
         Ok(buf)

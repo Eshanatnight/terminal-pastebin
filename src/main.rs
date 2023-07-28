@@ -1,6 +1,7 @@
 mod cmd;
 
 use clap::Parser;
+use cmd::Cmd;
 use std::ffi::OsString;
 
 #[derive(Debug, Parser)]
@@ -18,8 +19,8 @@ pub struct Cli {
 }
 
 fn main() {
-    let app = Cli::parse();
-    let cmd = cmd::Cmd::from_args(
+    let app: Cli = Cli::parse();
+    let cmd: Cmd = Cmd::from_args(
         app.file.to_str().unwrap(),
         app.clip.unwrap_or(false),
         app.remote.as_deref().unwrap_or("termbin.com:9999"),
