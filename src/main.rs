@@ -8,13 +8,13 @@ use std::ffi::OsString;
 #[command(name = "termbin")]
 #[command(author, version, about = "Create a termbin from the command line.", long_about = None)]
 pub struct Cli {
-    #[clap(short = 'c', long = "clip")]
-    clip: Option<bool>,
+    #[arg(short = 'c', long = "clip")]
+    clip: Option<bool>, // try with bool rather than using Option<bool> https://github.com/clap-rs/clap/blob/master/examples/tutorial_derive/03_01_flag_bool.rs
 
-    #[clap(short = 'r', long = "remote")]
-    remote: Option<String>,
+    #[arg(short = 'r', long = "remote")]
+    remote: Option<String>, // #[clap(default_value_t=termbin.com:9999)]
 
-    #[clap(index = 1)]
+    #[arg(index = 1)]
     file: OsString,
 }
 
