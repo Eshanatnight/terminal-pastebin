@@ -8,13 +8,13 @@ use std::ffi::OsString;
 #[command(name = "termbin")]
 #[command(author, version, about = "Create a termbin from the command line.", long_about = None)]
 pub struct Cli {
-    #[arg(short = 'c', long = "clip")]
+    #[clap(short = 'c', long = "clip")]
     clip: Option<bool>,
 
-    #[arg(short = 'r', long = "remote")]
+    #[clap(short = 'r', long = "remote")]
     remote: Option<String>,
 
-    #[arg(short = 'f', long = "file")]
+    #[clap(index = 1)]
     file: OsString,
 }
 
